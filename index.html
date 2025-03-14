@@ -196,7 +196,7 @@
             z-index: 0;
         }
 
-        .parallax-container h2 {
+        .parallax-container h2, h6, div {
             position: relative;
             z-index: 1;
         }
@@ -258,6 +258,7 @@
             width: 100%; /* Full width */
             max-width: 640px; /* Prevents growing beyond original width */
             aspect-ratio: 640 / 680; /* Maintains the aspect ratio */
+            margin-top: 20px;
         }
 
         .iframe-container-feedback {
@@ -265,6 +266,7 @@
             width: 100%; /* Full width */
             max-width: 640px; /* Prevents growing beyond original width */
             aspect-ratio: 640 / 1250; /* Maintains the aspect ratio */
+            margin-top: 20px;
         }
 
         iframe {
@@ -314,10 +316,10 @@
     [Done] update report html gen code to auto replace the new logo image
     -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbg-dark fixed-top py-3">
+    <nav class="navbar navbar-expand-lg navbar-dark navbg-dark fixed-top py-1">
         <div class="container">
-            <div class="navbar-brand" style="display: flex; align-items: baseline;">
-                <img src="/images/inwelth_logo_white.png" width="120px" alt="">
+            <div class="navbar-brand" style="margin-bottom: 15px;">
+                <img src="./images/inwelth_logo_white.png" width="120px" alt="inWelth">
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -362,7 +364,7 @@
                 </div>
             </div>
     
-            <iframe id="report-frame" class="w-100 mt-3" style="display: none; height: auto; background-color: #ffffff;"></iframe>
+            <iframe id="report-frame" class="w-100 mt-3" style="display: none; height: auto; background-color: #ffffff; overflow-y: hidden;"></iframe>
             <div class="w-100 mt-3" style="display: flex; justify-content: center;">
                 <button id="copyURL" class="btn btn-primary" style="display: none; justify-items: middle;">Copy report link for sharing?</button>
             </div>
@@ -372,7 +374,10 @@
     <!-- Stock Request Section -->
     <section class="parallax-container" id="stock-request">
         <div class="container py-5"  style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
-            <h2 class="text-center">Request for a Stock Report!</h2>
+            <h2 class="text-center mb-2" style="font-weight: 800;">Request for a Stock Report!</h2>
+            <h6 class="text-center mb-2" style="font-weight: 600;">Didn't find the stock you want?</h6>
+            <div class="line-mf"></div>
+
             <div class="iframe-container-request">
                 <iframe id="request-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdQQ0yZ1WCtPkdqFnFQ-L9M65O8Cb7RiFfCMJM35maw63A54Q/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
@@ -382,7 +387,10 @@
     <!-- Feedback Section -->
     <section class="parallax-container" id="feedback">
         <div class="container py-5" style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
-            <h2 class="text-center">Let us know how we are doing!</h2>
+            <h2 class="text-center mb-2" style="font-weight: 800;">We Value Your Feedback!</h2>
+            <h6 class="text-center mb-2" style="font-weight: 600;">Help shape the future of inWelth!</h6>
+            <div class="line-mf"></div>
+
             <div class="iframe-container-feedback">
                 <iframe id="feedback-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfI8XECkr5lj-2KjbYLHdfo_-WIC25Bw9hUAWonGq7EPKdWGA/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
