@@ -202,11 +202,11 @@
         }
 
         #stock-request {
-            background-image: url('/images/chart.jpg'); /* Replace with your image */
+            background-image: url('./images/chart.jpg'); /* Replace with your image */
         }
 
         #feedback {
-            background-image: url('/images/background1.jpg'); /* Replace with your image */
+            background-image: url('./images/background1.jpg'); /* Replace with your image */
         }         
         /* #feedback, #referral {
             background: radial-gradient(#000000, #2C3E50);
@@ -319,7 +319,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark navbg-dark fixed-top py-1">
         <div class="container">
             <div class="navbar-brand" style="margin-bottom: 15px;">
-                <img src="./images/inwelth_logo_white.png" width="120px" alt="inWelth">
+                <a href="/"><img src="./images/inwelth_logo_white.png" width="120px" alt="inWelth"></a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -340,7 +340,7 @@
     <header class="banner text-white text-center py-5 mt-5 align-items-center align-content-center">
         <!-- <canvas class="particles"></canvas> -->
         <div class="container align-items-center">
-            <img src="/images/inwelth_logo_white.png" width="50%" alt="" style="z-index: -10;">
+            <img src="./images/inwelth_logo_white.png" width="50%" alt="" style="z-index: -10;">
             <div style="display: flex; align-items: center; justify-content: center;">
                 <h1>Your Guide for </h1>&nbsp;&nbsp;<h1 class="typing" id="typing-text"></h1>
             </div>
@@ -376,7 +376,7 @@
         <div class="container py-5"  style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
             <h2 class="text-center mb-2" style="font-weight: 800;">Request for a Stock Report!</h2>
             <h6 class="text-center mb-2" style="font-weight: 600;">Didn't find the stock you want?</h6>
-            <div class="line-mf"></div>
+            <div class="line-mf" style="background-color: #ffffff;"></div>
 
             <div class="iframe-container-request">
                 <iframe id="request-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdQQ0yZ1WCtPkdqFnFQ-L9M65O8Cb7RiFfCMJM35maw63A54Q/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
@@ -389,7 +389,7 @@
         <div class="container py-5" style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
             <h2 class="text-center mb-2" style="font-weight: 800;">We Value Your Feedback!</h2>
             <h6 class="text-center mb-2" style="font-weight: 600;">Help shape the future of inWelth!</h6>
-            <div class="line-mf"></div>
+            <div class="line-mf" style="background-color: #ffffff;"></div>
 
             <div class="iframe-container-feedback">
                 <iframe id="feedback-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfI8XECkr5lj-2KjbYLHdfo_-WIC25Bw9hUAWonGq7EPKdWGA/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
@@ -437,10 +437,10 @@
                     const stockCard = document.createElement('div');
                     stockCard.classList.add('stock-card');
                     stockCard.classList.add('glowing-box');
-                    stockCard.onclick = () => loadReport("/reports/" + stock.name + "_report.html", "webpage");
+                    stockCard.onclick = () => loadReport("./reports/" + stock.name + "_report.html", "webpage");
 
                     stockCard.innerHTML = `
-                        <img src="/images/${stock.name + "_logo.png"}" alt="${stock.name}">
+                        <img src="./images/${stock.name + "_logo.png"}" alt="${stock.name}">
                         <span>${stock.name}</span>
                     `;
 
@@ -562,7 +562,7 @@
             // Example: Change heading text based on 'title' query param
             const stockParam = params.get("stock");
             if (stockParam) {
-                loadReport('/reports/' + stockParam + '_report.html', 'stock_link');
+                loadReport('./reports/' + stockParam + '_report.html', 'stock_link');
             }
         });
 
