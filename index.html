@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealoraa - Simplified Stock Reports</title>
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/proxima-nova-condensed" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1K126H1HM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K1K126H1HM');
+    </script>
+
+    <style>
+        body {
+            scroll-behavior: smooth;
+            background-color: #F4F4F4;
+            color: #333333 ;
+            /* background: radial-gradient(#28313B, #485461); */
+            font-family: 'Proxima Nova Condensed', sans-serif;
+            font-weight: 600;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Proxima Nova Condensed', sans-serif;
+            font-weight: 600;
+        }
+        .russo-one-regular {
+            font-family: "Russo One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .banner {
+            background: radial-gradient(#2C3E50, #121212);
+            height: 95vh;
+            justify-items: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 50px;
+            color: white;
+            /* background: linear-gradient(-45deg, #ff416c, #ff4b2b, #1e3c72, #2a5298); */
+            background-size: 300% 300%;
+            /* animation: gradientMove 10s ease infinite; */
+
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+        .banner h1, .banner h6 {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        } */
+
+        .typing {
+            display: inline-block;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .banner h1, .banner p {
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+
+        .stock-card {
+            cursor: pointer;
+            transition: transform 0.2s;
+            min-width: 200px;
+            text-align: center;
+            padding: 15px;
+            /* background: #1e1e1e; */
+            border-radius: 10px;
+            margin: 10px;
+            color: #121212;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* background: radial-gradient(#ffffff, #2C3E50); */
+            margin-bottom: 10px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease-in-out;
+            border: 1px solid #2C3E50;
+        }
+        .stock-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        /* .stock-card:hover { */
+            /* transform: scale(1.05); */
+            /* background: #333333; */
+        /* } */
+
+        .stock-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 5px #2C3E50, 0 0 10px #2C3E50, 0 0 15px #2C3E50;
+            border: 2px solid #2C3E50;
+        }
+
+        .stock-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px;
+            border: 0px solid #243442;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3), 0 2px 5px 0 rgba(0, 0, 0, 0.6);
+            transform: translateY(-5px); /* Slight elevation */
+        }
+        .stock-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .stock-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        footer {
+            background: #243442;
+        }
+        .btn-primary {
+            background-color: #2C3E50;
+            border-color: #2C3E50;
+        }
+        .btn-primary:hover {
+            background-color: #2a323a;
+            border-color: #2a323a;
+        }
+        /* #stock-reports {
+            background: linear-gradient(#121212, #2C3E50);
+        } */
+
+        .parallax-container {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+            overflow: hidden; /* Ensures overlay covers entire div */
+        }
+
+         /* Overlay inside each section */
+        .parallax-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Dark Overlay */
+            z-index: 0;
+        }
+
+        .parallax-container h2 {
+            position: relative;
+            z-index: 1;
+        }
+
+        #stock-request {
+            background-image: url('/images/chart.jpg'); /* Replace with your image */
+        }
+
+        #feedback {
+            background-image: url('/images/background1.jpg'); /* Replace with your image */
+        }         
+        /* #feedback, #referral {
+            background: radial-gradient(#000000, #2C3E50);
+            margin-bottom: 10px;
+        } */
+
+        /* .glowing-box:hover {
+            box-shadow: 0 0 15px #2C3E50, 0 0 15px #2C3E50,
+            0 0 15px #2C3E50;
+        } */
+
+        #report-frame {
+            border: none;
+            background-color: #ffffff;
+            margin-top: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #2C3E50, 0 0 10px #2C3E50,
+            0 0 10px #2C3E50;
+        }
+
+        .navbg-dark {
+            background:#243442;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-item a {
+            color: #E0E0E0 ;
+            font-weight: 600;
+            margin-left: 40px;
+        }
+
+        /* .nav-item a:hover {
+            color: #FFC107;
+        } */
+
+        #nav-click {
+            color: #E0E0E0 ;
+            text-decoration: none;
+        }
+
+        #nav-click:hover {
+            color:#FFC107; 
+            text-decoration:none; 
+            cursor:pointer;  
+        }
+
+        .iframe-container-request {
+            position: relative;
+            width: 100%; /* Full width */
+            max-width: 640px; /* Prevents growing beyond original width */
+            aspect-ratio: 640 / 680; /* Maintains the aspect ratio */
+        }
+
+        .iframe-container-feedback {
+            position: relative;
+            width: 100%; /* Full width */
+            max-width: 640px; /* Prevents growing beyond original width */
+            aspect-ratio: 640 / 1250; /* Maintains the aspect ratio */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Button Styling */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .line-mf {
+            width: 40px;
+            height: 5px;
+            background-color: #243442;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    TODO:
+    [Done] 2. Replace Bolt with inWelth in the stock reports
+    [Done] 4. Create hyperlink for the stock reports
+    [Done] 9. Add a share button for each stock
+    [Done] 6. Bring stock report request section up above feedback
+    7. Change feedback form order of last 3 cards
+    11. Combine dark and white themes
+    [Done] 12. Add a back to top button
+    [Done] 14. Reduce timeouts while loading the iframes
+    5. reduce load time of the website
+    1. Fix referral link - email data is PII and will be redacted in Google Analytics
+    [Done] 10. Add some animation in the banner or some background moving image
+    13. Check enabling of adsense
+    [Done] 3. Cleanup extra emojis in the summarization prompt
+    [Done] remove personalities page line and chart line from the prompt
+    [Done] update report html gen code to auto replace the new logo image
+    -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbg-dark fixed-top py-3">
+        <div class="container">
+            <div class="navbar-brand" style="display: flex; align-items: baseline;">
+                <img src="/images/inwelth_logo_white.png" width="120px" alt="">
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#stock-reports">Stock Reports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stock-request">Stock Report Request</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:inwelth@gmail.com">Contact Us</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#referral">Referral Program</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Banner -->
+    <header class="banner text-white text-center py-5 mt-5 align-items-center align-content-center">
+        <!-- <canvas class="particles"></canvas> -->
+        <div class="container align-items-center">
+            <img src="/images/inwelth_logo_white.png" width="50%" alt="" style="z-index: -10;">
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <h1>Your Guide for </h1>&nbsp;&nbsp;<h1 class="typing" id="typing-text"></h1>
+            </div>
+            <!-- Your Guide for a Smarter & Simplified Investing! -->
+            <h6 style="font-size: large; padding-top: 30px;">inWelth simplifies stock analysis using AI. No more jargons, only actionable insights.</h6>
+        </div>
+    </header>
+    
+    <!-- Stock Reports Section -->
+    <section id="stock-reports">
+        <div class="container py-5">
+            <h2 class="text-center mb-2" style="font-weight: 800;">STOCK REPORTS</h2>
+            <h6 class="text-center mb-2" style="font-weight: 600;">Scroll and select your favourite!</h6>
+            <div class="line-mf"></div>
+
+            <div class="stock-container">
+                <!-- Stock cards will be added here dynamically -->
+                <div class="stock-card glowing-box" onclick="loadReport('./reports/BHEL_report.html', 'webpage')">
+                    <img src="./images/BHEL_logo.png" alt="Stock 1">
+                    <span>Stock 1</span>
+                </div>
+            </div>
+    
+            <iframe id="report-frame" class="w-100 mt-3" style="display: none; height: auto; background-color: #ffffff;"></iframe>
+            <div class="w-100 mt-3" style="display: flex; justify-content: center;">
+                <button id="copyURL" class="btn btn-primary" style="display: none; justify-items: middle;">Copy report link for sharing?</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stock Request Section -->
+    <section class="parallax-container" id="stock-request">
+        <div class="container py-5"  style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
+            <h2 class="text-center">Request for a Stock Report!</h2>
+            <div class="iframe-container-request">
+                <iframe id="request-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdQQ0yZ1WCtPkdqFnFQ-L9M65O8Cb7RiFfCMJM35maw63A54Q/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="parallax-container" id="feedback">
+        <div class="container py-5" style="align-content: center; align-items: center; justify-content: center; justify-items: center; overflow-y: hidden;">
+            <h2 class="text-center">Let us know how we are doing!</h2>
+            <div class="iframe-container-feedback">
+                <iframe id="feedback-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSfI8XECkr5lj-2KjbYLHdfo_-WIC25Bw9hUAWonGq7EPKdWGA/viewform?embedded=true" height="auto" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <!-- <section id="referral">
+        <div class="container py-5" style="align-items: center; justify-items: center;">
+            <h2 class="text-center">Referral Program</h2>
+             <h4 class="pt-5">Why should you refer and share us ?</h4>
+             <ul>
+                <li>Priority Stock Report Requests → Top referrer's stock requests will be served faster.</li>
+                <li>Early Access to New Reports & Features → Before they might even go public.</li>
+             </ul>
+            <form action="javascript:generateReferral()" style="width: 300px; align-items: center; justify-items: center;" class="pt-5">
+                <input type="email" id="email" class="form-control" style="max-width: 300px;" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary mt-3">Generate Referral Link</button>
+                <p id="referral-link" class="mt-3" style="white-space: normal;word-wrap: break-word;word-break: break-all;"></p>
+            </form>
+        </div>
+    </section> -->
+
+    <button id="backToTop" class="btn btn-primary">↑ Top</button>
+    
+    <!-- Disclaimer -->
+    <footer class="text-center p-3" style="color: #ffffff; background: #243442;">
+        <!-- TODO: Enrich the disclaimer -->
+        <p>Disclaimer: This website provides stock analysis reports, generated by AI, for educational purposes only and is not a financial advice in any manner.</p>
+    </footer>
+    
+    <!-- Referral Tracking Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const stockContainer = document.querySelector('.stock-container');
+
+            try {
+                const response = await fetch('stocks.json'); // Load the JSON file
+                const stocks = await response.json();
+
+                stockContainer.innerHTML = ''; // Clear existing cards
+
+                stocks.forEach(stock => {
+                    const stockCard = document.createElement('div');
+                    stockCard.classList.add('stock-card');
+                    stockCard.classList.add('glowing-box');
+                    stockCard.onclick = () => loadReport("/reports/" + stock.name + "_report.html", "webpage");
+
+                    stockCard.innerHTML = `
+                        <img src="/images/${stock.name + "_logo.png"}" alt="${stock.name}">
+                        <span>${stock.name}</span>
+                    `;
+
+                    stockContainer.appendChild(stockCard);
+                });
+
+                // Add "Didn’t find what you’re looking for?" card
+                const requestCard = document.createElement('div');
+                requestCard.classList.add('stock-card');
+                requestCard.onclick = () => scrollToRequest();
+                requestCard.innerHTML = `<span style="white-space: normal;">Didn't find the stock you're looking for?</span> <br> <span style="white-space: normal;">Raise a Request Now!</span>`;
+                requestCard.style = 'max-width: 200px; text-align: center;';
+                stockContainer.appendChild(requestCard);
+
+            } catch (error) {
+                console.error('Error loading stocks:', error);
+            }
+        });
+
+        function loadReport(file, source) {
+            let iframe = document.getElementById('report-frame');
+            iframe.src = file;
+            iframe.style.display = 'block';
+
+            iframe.onload = function () {
+                setTimeout(() => {
+                    iframe.style.height = iframe.contentWindow.document.documentElement.scrollHeight + 'px';
+                }, 50); // Adding a slight delay to ensure the content is fully loaded
+            };
+
+            window.history.pushState({}, "", "?stock=" + file.split("/")[2].split("_")[0]);
+
+            document.getElementById('copyURL').style.display = 'block';
+
+            if (source == "stock_link") {
+                gtag('event', 'stock_report_link', {'stock': file.split("/")[2].split("_")[0]});
+            } else {
+                gtag('event', 'stock_report_click', {'stock': file.split("/")[2].split("_")[0]});
+            }
+        }
+
+        function scrollToRequest() {
+            document.getElementById('stock-request').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        function generateReferral() {
+            const email = document.getElementById('email').value.trim();
+            let emailPrefix = email.split('@')[0];
+            if (email) {
+                const encodedEmail = encodeURIComponent(emailPrefix);
+                const referralLink = `${window.location.origin}?utm_source=referral&utm_referrer=${encodedEmail}`;
+                document.getElementById('referral-link').innerHTML = 
+                    `Your referral link: <span onclick="copyContent()" id="ref_link" style="font-weight: bold;">${referralLink}</span>`;
+                gtag('event', 'generate_referral', {'email': email});
+            }
+        }
+
+        const copyContent = async () => {
+            try {
+                let text = document.getElementById('ref_link').innerHTML;
+                await navigator.clipboard.writeText(text);
+                gtag('event', 'copy_ref_url', {'url': text});
+                alert("Referral link copied to clipboard!");
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+            }
+        };
+
+
+        function scrollToRequest() {
+            document.getElementById('stock-request').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function computeAspectRatio(screenWidth, desktopAspectRatio, desktopWidth) {
+            const scalingFactor = 0.003; // Experimentally chosen
+            return desktopAspectRatio * Math.exp(scalingFactor * (desktopWidth - screenWidth));
+        }
+
+        function adjustIframeHeight() {
+            const iframe = document.getElementById("request-iframe");
+            if (!iframe) return;
+
+            const screenWidth = window.innerWidth;
+            let aspectRatio;
+            if (screenWidth > 768) {
+                aspectRatio = 680 / 640;
+            } else {
+                aspectRatio = computeAspectRatio(screenWidth, 680 / 640, 640);
+            }
+            const newWidth = iframe.offsetWidth;
+            const newHeight = newWidth * aspectRatio;
+            iframe.style.height = `${newHeight}px`;
+        }
+        window.addEventListener("load", adjustIframeHeight);
+        window.addEventListener("resize", adjustIframeHeight);
+
+        function adjustIframeHeightFeedback() {
+            const iframe = document.getElementById("feedback-iframe");
+            if (!iframe) return;
+
+            const screenWidth = window.innerWidth;
+            let aspectRatio;
+            if (screenWidth > 768) {
+                aspectRatio = 1250 / 640;
+            } else {
+                aspectRatio = computeAspectRatio(screenWidth, 1250 / 640, 640);
+            }
+            const newWidth = iframe.offsetWidth;
+            const newHeight = newWidth * aspectRatio;
+            iframe.style.height = `${newHeight}px`;
+        }
+        window.addEventListener("load", adjustIframeHeightFeedback);
+        window.addEventListener("resize", adjustIframeHeightFeedback);
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            
+            // Example: Change heading text based on 'title' query param
+            const stockParam = params.get("stock");
+            if (stockParam) {
+                loadReport('/reports/' + stockParam + '_report.html', 'stock_link');
+            }
+        });
+
+        document.getElementById("copyURL").addEventListener("click", function() {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => alert("Stock URL copied to clipboard!"))
+                .catch(err => console.error("Error copying URL: ", err));
+
+            gtag('event', 'copy_stock_url', {'url': window.location.href});
+        });
+
+        const backToTopButton = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+
+
+        // const canvas = document.querySelector(".particles");
+        // const ctx = canvas.getContext("2d");
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerHeight;
+
+        // const particles = [];
+        // for (let i = 0; i < 50; i++) {
+        //     particles.push({
+        //         x: Math.random() * canvas.width,
+        //         y: Math.random() * canvas.height,
+        //         radius: Math.random() * 4,
+        //         speedX: Math.random() * 2 - 1,
+        //         speedY: Math.random() * 2 - 1
+        //     });
+        // }
+
+        // function drawParticles() {
+        //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //     ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+        //     particles.forEach(p => {
+        //         ctx.beginPath();
+        //         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        //         ctx.fill();
+        //         p.x += p.speedX;
+        //         p.y += p.speedY;
+        //         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        //         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        //     });
+        //     requestAnimationFrame(drawParticles);
+        // }
+
+        // drawParticles();
+
+
+        const sentences = [
+            "Simplified Investing!",
+            "Amplified Insights!",
+            "AI-Informed Actions!"
+        ];
+
+        let i = 0, j = 0;
+        let isDeleting = false;
+        let typingSpeed = 50; // Adjust typing speed (lower is faster)
+        let eraseSpeed = 30; // Adjust erasing speed
+        let pauseTime = 1500; // Time to wait before erasing
+
+        function typeEffect() {
+            const currentText = sentences[j];
+            if (!isDeleting) {
+                document.getElementById("typing-text").textContent = currentText.slice(0, i++);
+                if (i > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeEffect, pauseTime); // Wait before erasing
+                    return;
+                }
+            } else {
+                document.getElementById("typing-text").textContent = currentText.slice(0, --i);
+                if (i === 0) {
+                    isDeleting = false;
+                    j = (j + 1) % sentences.length; // Move to next sentence
+                }
+            }
+            setTimeout(typeEffect, isDeleting ? eraseSpeed : typingSpeed);
+        }
+
+        setTimeout(typeEffect, 500); // Start typing after delay
+    </script>
+</body>
+</html>
