@@ -79,7 +79,7 @@
         .stock-card {
             cursor: pointer;
             transition: transform 0.2s;
-            min-width: 200px;
+            width: 200px;
             text-align: center;
             padding: 15px;
             border-radius: 10px;
@@ -217,16 +217,16 @@
         .iframe-container-request {
             position: relative;
             width: 100%; /* Full width */
-            max-width: 640px; /* Prevents growing beyond original width */
-            aspect-ratio: 640 / 680; /* Maintains the aspect ratio */
+            max-width: 640px; 
+            aspect-ratio: 640 / 680; 
             margin-top: 20px;
         }
 
         .iframe-container-feedback {
             position: relative;
             width: 100%; /* Full width */
-            max-width: 640px; /* Prevents growing beyond original width */
-            aspect-ratio: 640 / 1250; /* Maintains the aspect ratio */
+            max-width: 640px;
+            aspect-ratio: 640 / 1250;
             margin-top: 20px;
         }
 
@@ -319,7 +319,7 @@
                 <!-- Stock cards will be added here dynamically -->
                 <div class="stock-card glowing-box" onclick="loadReport('./reports/BHEL_report.html', 'webpage')">
                     <img src="./images/BHEL_logo.png" alt="Stock 1">
-                    <span>Stock 1</span>
+                    <span style="white-space: normal;">Bharat Heavy Electronics Ltd Bharat Heavy Electronics</span>
                 </div>
             </div>
     
@@ -422,7 +422,7 @@
 
                     stockCard.innerHTML = `
                         <img src="./images/${stock.name + "_logo.png"}" alt="${stock.name}">
-                        <span>${stock.fullname}</span>
+                        <span style="white-space: normal;">${stock.name}</span>
                     `;
 
                     stockContainer.appendChild(stockCard);
