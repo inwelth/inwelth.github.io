@@ -256,6 +256,23 @@
             background-color: #243442;
             margin: 0 auto;
         }
+
+        #banner_logo {
+            width: 100%;
+            transition: "width 0.5s ease-in-out";
+            z-index: -10;
+        }
+
+        #typing_box {
+            opacity: 0;
+            visibility: hidden;
+            transition: "opacity 0.5s ease-in-out";
+        }
+
+        #typing_box.show {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -282,7 +299,7 @@
     <!-- Banner -->
     <header class="banner text-white text-center py-5 mt-5 align-items-center align-content-center">
         <div class="container align-items-center">
-            <img src="./images/inwelth_logo_white.png" id="banner_logo" width="100%" alt="" style="z-index: -10;">
+            <img src="./images/inwelth_logo_white.png" id="banner_logo" alt="inWelth">
             <div id="typing_box" style="display: block; align-items: center; justify-content: center; padding-top: 30px;">
                 <h1>Your Ultimate Guide for </h1> &nbsp;&nbsp;
                 <h1 class="typing" id="typing-text"></h1>
@@ -366,15 +383,23 @@
     <!-- Referral Tracking Script -->
     <script>
         function adjust_banner() {
+            typing_box = document.getElementById('typing_box');
+
             if (window.innerWidth < 768) {
                 document.getElementById('banner_logo').style.width = '100%';
-                document.getElementById('typing_box').style.display = 'block';
-                document.getElementById('typing_box').style.paddingTop = '30px';
+                typing_box.style.display = 'block';
+                typing_box.style.paddingTop = '30px';
             } else {
-                document.getElementById('banner_logo').style.width = '50%';
-                document.getElementById('typing_box').style.display = 'flex';
-                document.getElementById('typing_box').style.paddingTop = '0px';
+                image = document.getElementById('banner_logo');
+                image.style.transition = "width 0.5s ease-in-out"; // Ensure smooth transition
+                image.style.width = "50%"; // Shrinking width
+                typing_box.style.display = 'flex';
+                typing_box.style.paddingTop = '0px';
             }
+
+            setTimeout(() => {
+                typing_box.classList.add("show"); // Apply smooth fade-in
+            }, 10);
         }
 
         window.addEventListener("load", adjust_banner);
