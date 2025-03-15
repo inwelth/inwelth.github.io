@@ -1,6 +1,6 @@
 # [inWelth](www.inwelth.com)
 
-Your Guide for a Simplified Investing with Amplified Insights using AI
+Your Guide for a Simplified Investing with Amplified Insights using AI.
 
 inWelth simplifies stock analysis using AI. No more jargons, only actionable insights.
 
