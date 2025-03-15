@@ -1,7 +1,1 @@
-[
-    { "name": "BHEL", "fullname": "Bharat Heavy Electricals Ltd"},
-    { "name": "HAL", "fullname": "Hindustan Aeronautics Ltd"},
-    { "name": "LEMONTREE", "fullname": "Lemon Tree Hotels Ltd"},
-    { "name": "NYKAA", "fullname": "Nykaa"},
-    { "name": "ZOMATO", "fullname": "Zomato Ltd"}
-]
+[{"name": "ASIANPAINT", "fullname": "Asian Paints Ltd"}, {"name": "BHEL", "fullname": "Bharat Heavy Electricals Ltd"}, {"name": "HAL", "fullname": "Hindustan Aeronautics Ltd"}, {"name": "HDFCBANK", "fullname": "Hdfc Bank Ltd"}, {"name": "NYKAA", "fullname": "Fsn E Commerce Ventures Ltd"}, {"name": "SBIN", "fullname": "State Bank Of India"}, {"name": "SWIGGY", "fullname": "Swiggy Ltd"}, {"name": "TATAMOTORS", "fullname": "Tata Motors Ltd"}, {"name": "ZOMATO", "fullname": "Zomato Ltd"}]
