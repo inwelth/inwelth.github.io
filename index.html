@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>inWelth - Simplified Stock Reports</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inWelth - Simplified Stock Reports</title>
-    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta name="description" content="Your Ultimate Guide for Smarter Investing with Simplified Actionable Reports. Stay ahead in the stock market with AI-informed analysis and insights.">
+    <meta name="keywords" content="AI stock reports, stock market analysis, best stock insights, financial market predictions, action, wealth, insights, investing, trading, inwealth, invealth">
+
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,6 +41,21 @@
             r.appendChild(e);
         })(window, document, 'https://static.hj.contentsquare.net/c/csq-', '.js', 5339147);
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "inWelth",
+      "url": "https://www.inwelth.com",
+      "description": "Get AI-generated stock reports with simplified insights and actions.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "inWelth"
+      }
+    }
+    </script>
+    
 
     <style>
         body {
@@ -190,11 +213,11 @@
         }
 
         #stock-request {
-            background-image: url('./images/chart.jpg'); /* Replace with your image */
+            background-image: url('./images/chart.jpg');
         }
 
         #feedback {
-            background-image: url('./images/background1.jpg'); /* Replace with your image */
+            background-image: url('./images/background1.jpg');
         }         
 
         #report-frame {
@@ -421,6 +444,41 @@
         window.addEventListener("load", adjust_banner);
         window.addEventListener("resize", adjust_banner);
 
+        function typing_animation() {
+            const sentences = [
+                "Simplified Investing!",
+                "Amplified Insights!",
+                "AI-Informed Actions!"
+            ];
+
+            let i = 0, j = 0;
+            let isDeleting = false;
+            let typingSpeed = 50; // Adjust typing speed (lower is faster)
+            let eraseSpeed = 30; // Adjust erasing speed
+            let pauseTime = 1500; // Time to wait before erasing
+
+            function typeEffect() {
+                const currentText = sentences[j];
+                if (!isDeleting) {
+                    document.getElementById("typing-text").textContent = currentText.slice(0, i++);
+                    if (i > currentText.length) {
+                        isDeleting = true;
+                        setTimeout(typeEffect, pauseTime); // Wait before erasing
+                        return;
+                    }
+                } else {
+                    document.getElementById("typing-text").textContent = currentText.slice(0, --i);
+                    if (i === 0) {
+                        isDeleting = false;
+                        j = (j + 1) % sentences.length; // Move to next sentence
+                    }
+                }
+                setTimeout(typeEffect, isDeleting ? eraseSpeed : typingSpeed);
+            }
+
+            setTimeout(typeEffect, 100); // Start typing after delay
+        }
+
         document.addEventListener('DOMContentLoaded', async function () {
             const stockContainer = document.querySelector('.stock-container');
 
@@ -454,6 +512,13 @@
 
             } catch (error) {
                 console.error('Error loading stocks:', error);
+            }
+        });
+
+        window.addEventListener("resize", function() {
+            let iframe = document.getElementById("report-frame");
+            if (iframe) {
+                iframe.src = iframe.src; // Reload iframe
             }
         });
 
@@ -584,39 +649,6 @@
         backToTopButton.addEventListener("click", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
-
-        const sentences = [
-            "Simplified Investing!",
-            "Amplified Insights!",
-            "AI-Informed Actions!"
-        ];
-
-        let i = 0, j = 0;
-        let isDeleting = false;
-        let typingSpeed = 50; // Adjust typing speed (lower is faster)
-        let eraseSpeed = 30; // Adjust erasing speed
-        let pauseTime = 1500; // Time to wait before erasing
-
-        function typeEffect() {
-            const currentText = sentences[j];
-            if (!isDeleting) {
-                document.getElementById("typing-text").textContent = currentText.slice(0, i++);
-                if (i > currentText.length) {
-                    isDeleting = true;
-                    setTimeout(typeEffect, pauseTime); // Wait before erasing
-                    return;
-                }
-            } else {
-                document.getElementById("typing-text").textContent = currentText.slice(0, --i);
-                if (i === 0) {
-                    isDeleting = false;
-                    j = (j + 1) % sentences.length; // Move to next sentence
-                }
-            }
-            setTimeout(typeEffect, isDeleting ? eraseSpeed : typingSpeed);
-        }
-
-        setTimeout(typeEffect, 500); // Start typing after delay
     </script>
 </body>
 </html>
