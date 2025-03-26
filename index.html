@@ -255,7 +255,7 @@
             position: relative;
             width: 100%; /* Full width */
             max-width: 640px; 
-            aspect-ratio: 640 / 680; 
+            aspect-ratio: 640 / 1050; 
             margin-top: 20px;
         }
 
@@ -590,9 +590,9 @@
             const screenWidth = window.innerWidth;
             let aspectRatio;
             if (screenWidth > 768) {
-                aspectRatio = 680 / 640;
+                aspectRatio = 1050 / 640;
             } else {
-                aspectRatio = computeAspectRatio(screenWidth, 680 / 640, 640);
+                aspectRatio = computeAspectRatio(screenWidth, 1050 / 640, 640);
             }
             const newWidth = iframe.offsetWidth;
             const newHeight = newWidth * aspectRatio;
